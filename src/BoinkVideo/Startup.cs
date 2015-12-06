@@ -15,11 +15,18 @@ using BoinkVideo.Services;
 using AspNet.Security.OpenIdConnect.Server;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
+using System.Security.Cryptography;
+using System.IdentityModel.Tokens;
 
 namespace BoinkVideo
 {
     public class Startup
     {
+        const string TokenAudience = "";
+        const string TokenIssuer = "";
+        private RsaSecurityKey key;
+        private TokenAuthOptions tokenOptions;
+
         public Startup(IHostingEnvironment env)
         {
             // Set up configuration sources.
@@ -42,6 +49,18 @@ namespace BoinkVideo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Set up key for signing bearer tokens
+            // TODO: A real key for production
+            RSAParameters keyParams = RSAKeyUtils.GetRandomKey();
+            key = new RsaSecurityKey(keyParams);
+            tokenOptions = new TokenAuthOptions()
+            {
+                Audience = TokenAudience,
+                Issuer = TokenIssuer,
+                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature)
+            };
+            services.AddInstance<TokenAuthOptions>(tokenOptions);
+
             // Add framework services.
             services.AddEntityFramework()
                 .AddSqlServer()
@@ -92,55 +111,31 @@ namespace BoinkVideo
                 }
                 catch { }
             }
-
-            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
-
-            app.UseOpenIdConnectServer(options =>
-            {
-                options.Provider = new OpenIdConnectServerProvider()
-                {
-                    OnValidateClientAuthentication = context => {
-                        context.Validated();
-                        return Task.FromResult<object>(null);
-                    },
-                    OnGrantResourceOwnerCredentials = async context =>
-                    {
-                        var signInManager = app.ApplicationServices.GetServices<SignInManager<ApplicationUser>>().FirstOrDefault();
-                        var userManager = app.ApplicationServices.GetServices<UserManager<ApplicationUser>>().FirstOrDefault();
-                        var user = await userManager.FindByNameAsync(context.UserName);
-                        if (user != null)
-                        {
-                            if (await userManager.CheckPasswordAsync(user, context.Password))
-                            {
-                                var principal = await signInManager.CreateUserPrincipalAsync(user);
-                                context.Validated(principal);
-                            }
-                        }
-                        return;
-                    }
-                };
-                options.TokenEndpointPath = "/Token";
-                options.AllowInsecureHttp = true;
-            });
-
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-
-
+            
             app.UseJwtBearerAuthentication(options =>
             {
-                options.AutomaticAuthenticate = true;
-                options.AutomaticChallenge = true;
-                options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters.ValidateSignature = false;
-                options.TokenValidationParameters.ValidateAudience = false;
-                options.TokenValidationParameters.ValidateIssuer = false;
-            });
+                // Basic settings - signing key to validate with, audience and issuer.
+                options.TokenValidationParameters.IssuerSigningKey = key;
+                options.TokenValidationParameters.ValidAudience = tokenOptions.Audience;
+                options.TokenValidationParameters.ValidIssuer = tokenOptions.Issuer;
 
+                // When receiving a token, check that we've signed it.
+                options.TokenValidationParameters.ValidateSignature = true;
+
+                // When receiving a token, check that it is still valid.
+                options.TokenValidationParameters.ValidateLifetime = true;
+
+                // This defines the maximum allowable clock skew - i.e. provides a tolerance on the token expiry time 
+                // when validating the lifetime. As we're creating the tokens locally and validating them on the same 
+                // machines which should have synchronised time, this can be set to zero. Where external tokens are
+                // used, some leeway here could be useful.
+                options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(0);
+            });
             app.UseIdentity();
 
-            // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
-
+            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

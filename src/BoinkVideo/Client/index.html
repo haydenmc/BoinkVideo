@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>BoinkVideo</title>
+    <link href="styles.css" rel="stylesheet" />
+    <script src="libraries.js"></script>
+    <script src="application.js"></script>
+</head>
+<body>
+    <bv-application>
+        <bv-landing></bv-landing>
+    </bv-application>
+
+    <template id="bv-landing">
+        <style>
+            :host {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+            .poster {
+                position: relative;
+                width: 100%;
+                height: calc(100% - 120px);
+                background-size: cover;
+                background-position: center center;
+                overflow: hidden;
+                z-index: 10;
+            }
+                .poster::after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: linear-gradient(12deg, rgba(0,0,0,1) 0%,rgba(125,185,232,0) 55%);
+                    z-index: 20;
+                }
+
+                .poster .titleGroup {
+                    position: absolute;
+                    height: 128px;
+                    max-width: 1000px;
+                    bottom: 96px;
+                    left: 96px;
+                    right: 0;
+                    overflow: hidden;
+                    z-index: 30;
+                }
+                    .poster .titleGroup img {
+                        width: 128px;
+                        height: 128px;
+                        float: left;
+                        margin-right: 16px;
+                    }
+
+                    .poster .titleGroup .title {
+                        font-weight: 900;
+                        text-transform: uppercase;
+                        font-size: 80px;
+                        line-height: 0.7;
+                    }
+
+                    .poster .titleGroup .subtitle {
+                        font-weight: 100;
+                        font-size: 24px;
+                        margin-top: 8px;
+                    }
+
+            .tags {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 120px;
+                display: flex;
+            }
+        </style>
+        <div class="poster" style="background-image: url('Images/TestPoster.jpg');">
+            <div class="titleGroup">
+                <img src="Images/PlayIcon.svg" />
+                <div class="title">Color Run 2015</div>
+                <div class="subtitle">Try-hard 8-bit single-origin coffee, fingerstache waistcoat portland wayfarers seitan art party bicycle rights swag chartreuse ennui cliche tumblr.</div>
+            </div>
+        </div>
+        <div class="tags">
+
+        </div>
+    </template>
+</body>
+</html>
