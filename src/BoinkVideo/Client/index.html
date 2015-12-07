@@ -45,7 +45,7 @@
                 .poster .titleGroup {
                     position: absolute;
                     height: 128px;
-                    max-width: 1000px;
+                    max-width: 1200px;
                     bottom: 96px;
                     left: 96px;
                     right: 0;
@@ -79,7 +79,37 @@
                 right: 0;
                 height: 120px;
                 display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                overflow: hidden;
             }
+                .tags .tag {
+                    position: relative;
+                    font-weight: 500;
+                    font-size: 24px;
+                    height: 100%;
+                    min-width: 240px;
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-size: cover;
+                }
+
+                    .tags .tag::after {
+                        position: absolute;
+                        content: '';
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        background-color: #000;
+                        opacity: 0.5;
+                    }
+
+                    .tags .tag .text {
+                        z-index: 50;
+                    }
         </style>
         <div class="poster" style="background-image: url('Images/TestPoster.jpg');">
             <div class="titleGroup">
@@ -89,7 +119,10 @@
             </div>
         </div>
         <div class="tags">
-
+            <div class="tag" style="background-image: url('Images/TestFootball.jpg');"><div class="text">#football</div></div>
+            <div class="tag" style="background-image: url('Images/TestProm.jpg');"><div class="text">#prom</div></div>
+            <div class="tag" style="background-image: url('Images/TestTalentshow.jpg');"><div class="text">#talentshow</div></div>
+            <div class="tag" style="background-image: url('Images/TestGraduation.jpg');"><div class="text">#graduation</div></div>
         </div>
     </template>
 </body>
