@@ -114,16 +114,30 @@
         <div class="poster" style="background-image: url('Images/TestPoster.jpg');">
             <div class="titleGroup">
                 <img src="Images/PlayIcon.svg" />
-                <div class="title">Color Run 2015</div>
-                <div class="subtitle">Try-hard 8-bit single-origin coffee, fingerstache waistcoat portland wayfarers seitan art party bicycle rights swag chartreuse ennui cliche tumblr.</div>
+                <div class="title">{{featuredVideo.title}}</div>
+                <div class="subtitle">{{featuredVideo.description}}</div>
             </div>
         </div>
         <div class="tags">
-            <div class="tag" style="background-image: url('Images/TestFootball.jpg');"><div class="text">#football</div></div>
-            <div class="tag" style="background-image: url('Images/TestProm.jpg');"><div class="text">#prom</div></div>
-            <div class="tag" style="background-image: url('Images/TestTalentshow.jpg');"><div class="text">#talentshow</div></div>
-            <div class="tag" style="background-image: url('Images/TestGraduation.jpg');"><div class="text">#graduation</div></div>
+            <ui-repeater data-context="{{featuredTags}}" data-event-item-click="tagClicked">
+                <template>
+                    <div class="tag" style=""><div class="text">#{{name}}</div></div>
+                </template>
+            </ui-repeater>
         </div>
+    </template>
+
+    <template id="bv-tagbrowser">
+        <style>
+            :host {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+        </style>
+        <h1>{{tag.name}}</h1>
     </template>
 </body>
 </html>

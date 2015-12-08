@@ -332,7 +332,7 @@ var Component = (function (_super) {
                 var dataContextAttrBindingName = dataContextAttrBindingMatches[0].substr(2, dataContextAttrBindingMatches[0].length - 4);
                 var binding = this.parentComponent.dataBinder.registerBinding(dataContextAttrBindingName);
                 binding.onValueChanged.subscribe(this.dataContextUpdatedCallback);
-                this.dataContext = binding.observableValue;
+                this._dataContext = binding.observableValue;
             }
             else {
                 throw new Error("Couldn't parse data context binding expression '"
