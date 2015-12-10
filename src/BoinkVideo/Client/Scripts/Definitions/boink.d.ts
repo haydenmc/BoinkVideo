@@ -1,3 +1,6 @@
+declare class Animator {
+    static applyAnimation(element: HTMLElement, name: string, transient?: boolean): void;
+}
 declare class EventHandler<T> {
     private callbacks;
     constructor();

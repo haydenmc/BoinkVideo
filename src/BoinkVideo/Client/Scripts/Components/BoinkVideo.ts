@@ -24,5 +24,15 @@ class BoinkVideo extends Application {
         dataModel.featuredTags.value.push(tag);
         this.dataContext = new Observable(dataModel);
     }
+
+    public navigateTo(component: Component) {
+        var lastElement = <HTMLElement>this.lastElementChild;
+        this.appendChild(component);
+        // HACK: Edge/IE doesn't seem to want to apply animations right away... we have to wait.
+        setTimeout(() => {
+            Animator.applyAnimation(lastElement, "animation-page-forward-out", true);
+            Animator.applyAnimation(component, "animation-page-forward-in", false);
+        }, 50);
+    }
 }
 Component.register("bv-application", BoinkVideo);

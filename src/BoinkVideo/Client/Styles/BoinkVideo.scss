@@ -55,8 +55,41 @@
     font-style: normal;
 }
 
+/* Animations */
+@keyframes page-forward-in {
+    from {
+        transform: translate3d(0px, 100%, 0px);
+    }
+    to {
+        transform: translate3d(0px, 0px, 0px);
+    }
+}
+
+.animation-page-forward-in {
+    animation-name: page-forward-in;
+    animation-duration: 500ms;
+    animation-timing-function: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+}
+
+@keyframes page-forward-out {
+    from {
+        transform: translate3d(0px, 0px, 0px);
+    }
+    to {
+        transform: translate3d(0px, -100%, 0px);
+    }
+}
+
+.animation-page-forward-out {
+    animation-name: page-forward-out;
+    animation-duration: 500ms;
+    animation-timing-function: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+}
+
+/* Common styles */
 body {
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
     background-color: #000;
     color: #fff;
+    overflow: hidden;
 }
