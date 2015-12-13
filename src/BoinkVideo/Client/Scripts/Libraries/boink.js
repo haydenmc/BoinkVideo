@@ -1,7 +1,7 @@
 var Animator = (function () {
     function Animator() {
     }
-    Animator.applyAnimation = function (element, name, transient) {
+    Animator.applyAnimation = function (element, name, transient, endCallback) {
         if (typeof transient === "undefined") {
             transient = true;
         }
@@ -11,6 +11,9 @@ var Animator = (function () {
                 element.removeEventListener("animationend", endEvent);
             };
             element.addEventListener("animationend", endEvent);
+        }
+        if (typeof endCallback !== "undefined") {
+            element.addEventListener("animationend", endCallback);
         }
         element.classList.add(name);
     };

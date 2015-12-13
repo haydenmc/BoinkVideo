@@ -1,5 +1,5 @@
 declare class Animator {
-    static applyAnimation(element: HTMLElement, name: string, transient?: boolean): void;
+    static applyAnimation(element: HTMLElement, name: string, transient?: boolean, endCallback?: () => void): void;
 }
 declare class EventHandler<T> {
     private callbacks;

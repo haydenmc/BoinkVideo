@@ -143,8 +143,45 @@
                 text-transform: uppercase;
                 margin: 8px;
             }
+            .featured {
+                position: relative;
+                display: flex;
+                width: 100%;
+                height: 70vh;
+            }
+                .featured div.main {
+                    width: 60%;
+                    height: 100%;
+                    border: 2px solid #fff;
+                    box-sizing: border-box;
+                }
+                .featured div.subFeatured {
+                    display: flex;
+                    flex-direction: row;
+                    width: 40%;
+                    height: 100%;
+                    flex-wrap: wrap;
+                }
+                    .featured div.subFeatured div {
+                        width: 50%;
+                        height: 50%;
+                        flex-shrink: 0;
+                        border: 2px solid #fff;
+                        box-sizing: border-box;
+                    }
         </style>
         <h1>#{{tag.name}}</h1>
+        <div class="featured">
+            <div class="main">
+
+            </div>
+            <div class="subFeatured">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
     </template>
 </body>
 </html>
