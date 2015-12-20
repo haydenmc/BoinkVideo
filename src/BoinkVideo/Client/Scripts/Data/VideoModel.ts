@@ -5,4 +5,5 @@ class VideoModel {
     public id: Observable<string> = new Observable("");
     public title: Observable<string> = new Observable("");
     public description: Observable<string> = new Observable("");
+    public credit: Observable<string> = new Observable("");
 }

@@ -301,7 +301,7 @@ var Component = (function (_super) {
             if (newContext !== this._dataContext) {
                 var oldContext = this._dataContext;
                 this._dataContext = newContext;
-                if (typeof oldContext !== "undefined") {
+                if (typeof oldContext !== "undefined" && newContext !== oldContext) {
                     this.dataContextUpdated(oldContext, newContext);
                 }
             }
@@ -663,6 +663,7 @@ var Repeater = (function (_super) {
         this.removeItem(arg.position);
     };
     Repeater.prototype.populateAllItems = function () {
+        console.log("REPEATER: Populating all items.");
         var array = this.dataContext.value;
         for (var i = 0; i < array.size; i++) {
             var itemDataContext = new Observable(array.get(i));

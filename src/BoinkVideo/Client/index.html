@@ -135,6 +135,8 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
+                overflow-y: auto;
+                overflow-x: hidden;
             }
             h1 {
                 font-size: 48px;
@@ -169,6 +171,29 @@
                         border: 2px solid #fff;
                         box-sizing: border-box;
                     }
+            .sortBy {
+                font-weight: 100;
+                font-size: 26px;
+                line-height: 1;
+                margin: 24px 0 0 0;
+                text-transform: lowercase;
+            }
+            .sorted {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-content: flex-start;
+            }
+                .sorted bv-videothumb {
+                    flex-shrink: 0;
+                    margin: 16px;
+                    cursor: pointer;
+                    transition: transform 200ms cubic-bezier(0.075, 0.820, 0.165, 1.000);
+                }
+                    .sorted bv-videothumb:hover {
+                        transform: scale(1.1);
+                    }
         </style>
         <h1>#{{tag.name}}</h1>
         <div class="featured">
@@ -181,6 +206,62 @@
                 <div></div>
                 <div></div>
             </div>
+        </div>
+        <div class="sortBy">sort by ...</div>
+        <div class="sorted">
+            <ui-repeater data-context="{{videos}}">
+                <template>
+                    <bv-videothumb></bv-videothumb>
+                </template>
+            </ui-repeater>
+        </div>
+    </template>
+
+    <template id="bv-videothumb">
+        <style>
+            :host {
+                display: flex;
+                flex-direction: row;
+                width: 480px;
+                height: 135px;
+                transition: transform 200ms ease-out;
+            }
+            .thumbnail {
+                flex-grow: 0;
+                flex-shrink: 0;
+                width: 240px;
+                height: 135px;
+                background-size: cover;
+                background-position: center center;
+            }
+            .details {
+                overflow: hidden;
+                margin-left: 8px;
+            }
+                .details .title {
+                    font-weight: 900;
+                    font-size: 24px;
+                    text-transform: uppercase;
+                    line-height: 1;
+                }
+                .details .credit {
+                    font-weight: 100;
+                    font-size: 20px;
+                    line-height: 1;
+                }
+                .details .description {
+                    padding-top: 8px;
+                    font-weight: normal;
+                    font-size: 16px;
+                }
+        </style>
+        <!-- TODO: alt tag should be title of video -->
+        <div class="thumbnail" style="background-image: url('Images/ThumbPlaceholder.png');">
+        </div>
+        <div class="details">
+            <div class="title">{{title}}</div>
+            <div class="credit">{{credit}}</div>
+            <div class="description">{{description}}</div>
         </div>
     </template>
 </body>
