@@ -135,8 +135,16 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                overflow-y: auto;
-                overflow-x: hidden;
+                overflow: hidden;
+            }
+            header {
+                position: absolute;
+                display: flex;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 72px;
+                overflow: hidden;
             }
             h1 {
                 font-size: 48px;
@@ -144,6 +152,15 @@
                 font-weight: 900;
                 text-transform: uppercase;
                 margin: 8px;
+            }
+            .content {
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                overflow-y: auto;
+                overflow-x: hidden;
             }
             .featured {
                 position: relative;
@@ -182,7 +199,7 @@
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
-                justify-content: center;
+                justify-content: flex-start;
                 align-content: flex-start;
             }
                 .sorted bv-videothumb {
@@ -192,28 +209,32 @@
                     transition: transform 200ms cubic-bezier(0.075, 0.820, 0.165, 1.000);
                 }
                     .sorted bv-videothumb:hover {
-                        transform: scale(1.1);
+                        transform: scale(0.95);
                     }
         </style>
-        <h1>#{{tag.name}}</h1>
-        <div class="featured">
-            <div class="main">
+        <header>
+            <h1>#{{tag.name}}</h1>
+        </header>
+        <div class="content">
+            <div class="featured">
+                <div class="main">
 
+                </div>
+                <div class="subFeatured">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
-            <div class="subFeatured">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class="sortBy">sort by ...</div>
+            <div class="sorted">
+                <ui-repeater data-context="{{videos}}">
+                    <template>
+                        <bv-videothumb></bv-videothumb>
+                    </template>
+                </ui-repeater>
             </div>
-        </div>
-        <div class="sortBy">sort by ...</div>
-        <div class="sorted">
-            <ui-repeater data-context="{{videos}}">
-                <template>
-                    <bv-videothumb></bv-videothumb>
-                </template>
-            </ui-repeater>
         </div>
     </template>
 
