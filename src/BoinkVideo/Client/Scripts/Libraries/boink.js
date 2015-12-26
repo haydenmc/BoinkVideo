@@ -5,15 +5,18 @@ var Animator = (function () {
         if (typeof transient === "undefined") {
             transient = true;
         }
+        if (typeof endCallback !== "undefined") {
+            element.addEventListener("animationend", endCallback);
+        }
         if (transient) {
             var endEvent = function (evt) {
                 element.classList.remove(name);
                 element.removeEventListener("animationend", endEvent);
+                if (typeof endCallback !== "undefined") {
+                    element.removeEventListener("animationend", endCallback);
+                }
             };
             element.addEventListener("animationend", endEvent);
-        }
-        if (typeof endCallback !== "undefined") {
-            element.addEventListener("animationend", endCallback);
         }
         element.classList.add(name);
     };

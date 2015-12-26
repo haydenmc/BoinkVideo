@@ -9,7 +9,6 @@
 </head>
 <body>
     <bv-application>
-        <bv-landing></bv-landing>
     </bv-application>
 
     <template id="bv-landing">
@@ -146,6 +145,10 @@
                 height: 72px;
                 overflow: hidden;
             }
+            bv-backbutton {
+                margin: 8px 0;
+                height: 56px;
+            }
             h1 {
                 font-size: 48px;
                 line-height: 1;
@@ -213,7 +216,7 @@
                     }
         </style>
         <header>
-            <h1>#{{tag.name}}</h1>
+            <bv-backbutton></bv-backbutton><h1>#{{tag.name}}</h1>
         </header>
         <div class="content">
             <div class="featured">
@@ -284,6 +287,17 @@
             <div class="credit">{{credit}}</div>
             <div class="description">{{description}}</div>
         </div>
+    </template>
+    <template id="bv-backbutton">
+        <style>
+            :host {
+                cursor: pointer;
+            }
+            img {
+                height: 100%;
+            }
+        </style>
+        <img src="Images/UpIcon.svg" />
     </template>
 </body>
 </html>
