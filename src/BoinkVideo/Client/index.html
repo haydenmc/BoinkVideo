@@ -230,7 +230,7 @@
                     <div></div>
                 </div>
             </div>
-            <div class="sortBy">sort by ...</div>
+            <div class="sortBy">sort by ... from ...</div>
             <div class="sorted">
                 <ui-repeater data-context="{{videos}}">
                     <template>
@@ -298,6 +298,95 @@
             }
         </style>
         <img src="Images/UpIcon.svg" />
+    </template>
+    
+    <template id="bv-player">
+        <style>
+            :host {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+            video {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+            }
+            div.controls {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: linear-gradient(12deg, rgba(0,0,0,1) 0%,rgba(125,185,232,0) 55%);
+            }
+                div.controls bv-backbutton {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 56px;
+                    width: 56px;
+                }
+                div.controls div.details {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 96px;
+                }
+                    div.controls div.details .progress {
+                        position: absolute;
+                        bottom: 0;
+                        left: 96px;
+                        right: 0;
+                        height: 8px;
+                    }
+                        div.controls div.details .progress .inner {
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            background-color: #fff;
+                        }
+
+                    div.controls div.details .button {
+                        height: 96px;
+                        width: 96px;
+                        float: left;
+                        margin-right: 16px;
+                    }
+                
+                    div.controls div.details .title {
+                        font-weight: 900;
+                        font-size: 48px;
+                        line-height: 1;
+                        text-transform: uppercase;
+                    }
+                    div.controls div.details .sub {
+                        font-weight: 100;
+                        font-size: 22px;
+                        line-height: 1;
+                        opacity: 0.5;
+                        text-transform: lowercase;
+                    }
+        </style>
+        <video src="Images/DemoVideo.mp4"></video>
+        <div class="controls">
+            <bv-backbutton></bv-backbutton>
+            <div class="details">
+                <img class="button" src="Images/PlayIcon.svg" alt="Play / Pause" />
+                <div class="title">{{title}}</div>
+                <div class="sub">0:00 / 3:25</div>
+                <div class="progress"><div class="inner"></div></div>
+            </div>
+        </div>
     </template>
 </body>
 </html>

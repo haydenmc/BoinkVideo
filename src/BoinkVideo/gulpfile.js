@@ -13,7 +13,7 @@ gulp.task("html", function () {
 });
 
 gulp.task("ts", function () {
-    return gulp.src(["Client/Scripts/**/*.ts"]).pipe(typescript({ sortOutput: true })).pipe(concat("application.js")).pipe(gulp.dest("wwwroot/"));
+    return gulp.src(["Client/Scripts/**/*.ts"]).pipe(typescript({ sortOutput: true, target: "es5" })).pipe(concat("application.js")).pipe(gulp.dest("wwwroot/"));
 });
 
 gulp.task("js", function () {
