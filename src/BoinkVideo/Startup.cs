@@ -6,6 +6,8 @@ using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Authentication;
+using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Authentication.JwtBearer;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,8 +24,8 @@ namespace BoinkVideo
 {
     public class Startup
     {
-        const string TokenAudience = "";
-        const string TokenIssuer = "";
+        const string TokenAudience = "lfhs.media";
+        const string TokenIssuer = "lfhs.media";
         private RsaSecurityKey key;
         private TokenAuthOptions tokenOptions;
 
@@ -60,6 +62,12 @@ namespace BoinkVideo
                 SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature)
             };
             services.AddInstance<TokenAuthOptions>(tokenOptions);
+            
+            services.AddAuthorization(auth => {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                .RequireAuthenticatedUser().Build());
+            });
 
             // Add framework services.
             services.AddEntityFramework()

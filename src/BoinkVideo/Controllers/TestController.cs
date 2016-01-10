@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace BoinkVideo.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    [Authorize("Bearer")]
     public class TestController : Controller
     {
         [HttpGet]
         public string Get()
         {
             var name = User.Identity.Name;
-            return "Yay!";
+            return "Yay! Hi " + name;
         }
     }
 }

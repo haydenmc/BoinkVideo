@@ -10,11 +10,12 @@ using System.Threading.Tasks;
 
 namespace BoinkVideo.Controllers
 {
+    [Route("Token")]
     public class TokenController : Controller
     {
-        private UserManager<ApplicationUser> _userManager;
-        private SignInManager<ApplicationUser> _signInManager;
-        private TokenAuthOptions _tokenOptions;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly TokenAuthOptions _tokenOptions;
 
         public TokenController(
             UserManager<ApplicationUser> userManager,
@@ -38,7 +39,7 @@ namespace BoinkVideo.Controllers
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<dynamic> Post([FromBody] AuthRequest req)
+        public async Task<dynamic> Post(AuthRequest req)
         {
             // Obviously, at this point you need to validate the username and password against whatever system you wish.
             var signin = await _signInManager.PasswordSignInAsync(req.username, req.password, false, false);
