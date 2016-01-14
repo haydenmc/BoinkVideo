@@ -109,6 +109,12 @@
                     .tags .tag .text {
                         z-index: 50;
                     }
+            bv-user-badge {
+                transition: transform 200ms cubic-bezier(0.075, 0.820, 0.165, 1.000);
+            }
+            bv-user-badge:hover {
+                transform: scale(0.9);
+            }
         </style>
         <div class="poster" style="background-image: url('Images/TestPoster.jpg');">
             <div class="titleGroup">
@@ -124,6 +130,7 @@
                 </template>
             </ui-repeater>
         </div>
+        <bv-user-badge></bv-user-badge>
     </template>
 
     <template id="bv-tagbrowser">
@@ -385,6 +392,134 @@
                 <div class="title">{{title}}</div>
                 <div class="sub">0:00 / 3:25</div>
                 <div class="progress"><div class="inner"></div></div>
+            </div>
+        </div>
+    </template>
+    <template id="bv-user-badge">
+        <style>
+            :host {
+                position: absolute;
+                top: 32px;
+                right: 32px;
+                z-index: 100;
+                cursor: pointer;
+            }
+            img {
+                width: 64px;
+                height: 64px;
+            }
+        </style>
+        <img src="Images/UserIcon.svg" />
+    </template>
+    <template id="bv-user-pane">
+        <style>
+            :host {
+                display: block;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 999;
+            }
+            h1 {
+                font-size: 64px;
+                text-transform: lowercase;
+                font-weight: 100;
+                margin: 0;
+                line-height: 1;
+            }
+            .dimmer {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.7);
+            }
+            .pane {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                width: 360px;
+                background-color: #000;
+                border-left: 1px solid #fff;
+                padding: 24px;
+                box-sizing: border-box;
+            }
+            .paneContent {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                padding: 24px;
+            }
+            p {
+                color: rgba(255, 255, 255, 0.5)
+            }
+                p a {
+                    color: rgba(255, 255, 255, 0.5);
+                }
+                p a:hover {
+                    color: #fff;
+                }
+            input {
+                width: 100%;
+                margin: 24px 0;
+                display: block;
+                font-size: 22px;
+                padding: 8px 16px;
+                box-sizing: border-box;
+                border: none;
+                background-color: rgba(255, 255, 255, 0.2);
+                font-family: "Open Sans";
+                font-weight: normal;
+                color: #fff;
+                transition: color 200ms ease-out, background-color 200ms ease-out;
+            }
+            input:focus {
+                background-color: #fff;
+                color: #000;
+            }
+            button {
+                display: block;
+                background-color: #fff;
+                color: #000;
+                font-family: "Open Sans";
+                font-weight: 900;
+                font-size: 22px;
+                text-align: center;
+                text-transform: uppercase;
+                border: none;
+                margin: 0 auto;
+                padding: 8px;
+            }
+        </style>
+        <div class="dimmer">
+            <div class="pane">
+                <div class="paneContent signin">
+                    <h1>Sign In</h1>
+                    <p>
+                        You need to sign in to upload videos and use additional features.
+                        If you don't have an account, you can <a class="registerLink" href="#">register</a>.
+                    </p>
+                    <input type="email" name="email" placeholder="e-mail" />
+                    <input type="password" name="password" placeholder="password" />
+                    <button>Sign In</button>
+                </div>
+                <div class="paneContent register">
+                    <h1>Register</h1>
+                    <p>
+                        Creating an account will allow you to upload videos and use additional features.
+                    </p>
+                    <input type="email" name="email" placeholder="e-mail" />
+                    <input type="text" name="name" placeholder="your name" />
+                    <input type="password" name="password" placeholder="password" />
+                    <input type="password" name="confirmPassword" placeholder="confirm password" />
+                    <button>Register</button>
+                </div>
             </div>
         </div>
     </template>
