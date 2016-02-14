@@ -1,0 +1,14 @@
+<template id="bv-player">
+    <!-- inject:css -->
+    <!-- endinject -->
+    <video src="Images/DemoVideo.mp4"></video>
+    <div class="controls">
+        <bv-backbutton></bv-backbutton>
+        <div class="details">
+            <img class="button" src="Images/PlayIcon.svg" alt="Play / Pause" />
+            <div class="title">{{title}}</div>
+            <div class="sub">0:00 / 3:25</div>
+            <div class="progress"><div class="inner"></div></div>
+        </div>
+    </div>
+</template>

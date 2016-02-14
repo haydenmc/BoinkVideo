@@ -1,0 +1,6 @@
+{
+    "files": [
+        "Client/Scripts/**/*.ts",
+        "Client/Components/**/*.ts"
+    ]
+}

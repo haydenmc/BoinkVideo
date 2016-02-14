@@ -1,0 +1,28 @@
+<template id="bv-tagbrowser">
+    <!-- inject:css -->
+    <!-- endinject -->
+    <header>
+        <bv-backbutton></bv-backbutton><h1>#{{tag.name}}</h1>
+    </header>
+    <div class="content">
+        <div class="featured">
+            <div class="main">
+
+            </div>
+            <div class="subFeatured">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="sortBy">sort by ... from ...</div>
+        <div class="sorted">
+            <ui-repeater data-context="{{videos}}">
+                <template>
+                    <bv-videothumb></bv-videothumb>
+                </template>
+            </ui-repeater>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,35 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    width: 480px;
+    height: 135px;
+    transition: transform 200ms ease-out;
+}
+.thumbnail {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 240px;
+    height: 135px;
+    background-size: cover;
+    background-position: center center;
+}
+.details {
+    overflow: hidden;
+    margin-left: 8px;
+}
+    .details .title {
+        font-weight: 900;
+        font-size: 24px;
+        text-transform: uppercase;
+        line-height: 1;
+    }
+    .details .credit {
+        font-weight: 100;
+        font-size: 20px;
+        line-height: 1;
+    }
+    .details .description {
+        padding-top: 8px;
+        font-weight: normal;
+        font-size: 16px;
+    }

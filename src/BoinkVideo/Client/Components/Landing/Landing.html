@@ -1,0 +1,19 @@
+<template id="bv-landing">
+    <!-- inject:css -->
+    <!-- endinject -->
+    <div class="poster" style="background-image: url('Images/TestPoster.jpg');">
+        <div class="titleGroup">
+            <img src="Images/PlayIcon.svg" />
+            <div class="title">{{featuredVideo.title}}</div>
+            <div class="subtitle">{{featuredVideo.description}}</div>
+        </div>
+    </div>
+    <div class="tags">
+        <ui-repeater data-context="{{featuredTags}}" data-event-item-click="tagClicked">
+            <template>
+                <div class="tag" style=""><div class="text">#{{name}}</div></div>
+            </template>
+        </ui-repeater>
+    </div>
+    <bv-user-badge></bv-user-badge>
+</template>

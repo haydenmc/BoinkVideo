@@ -1,0 +1,83 @@
+:host {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+}
+h1 {
+    font-size: 64px;
+    text-transform: lowercase;
+    font-weight: 100;
+    margin: 0;
+    line-height: 1;
+}
+.dimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.7);
+}
+.pane {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 360px;
+    background-color: #000;
+    border-left: 1px solid #fff;
+    padding: 24px;
+    box-sizing: border-box;
+}
+.paneContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 24px;
+}
+p {
+    color: rgba(255, 255, 255, 0.5)
+}
+    p a {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    p a:hover {
+        color: #fff;
+    }
+input {
+    width: 100%;
+    margin: 24px 0;
+    display: block;
+    font-size: 22px;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-family: "Open Sans";
+    font-weight: normal;
+    color: #fff;
+    transition: color 200ms ease-out, background-color 200ms ease-out;
+}
+input:focus {
+    background-color: #fff;
+    color: #000;
+}
+button {
+    display: block;
+    background-color: #fff;
+    color: #000;
+    font-family: "Open Sans";
+    font-weight: 900;
+    font-size: 22px;
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    margin: 0 auto;
+    padding: 8px;
+}

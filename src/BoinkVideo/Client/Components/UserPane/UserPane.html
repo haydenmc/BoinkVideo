@@ -1,0 +1,29 @@
+<template id="bv-user-pane">
+    <!-- inject:css -->
+    <!-- endinject -->
+    <div class="dimmer">
+        <div class="pane">
+            <div class="paneContent signin">
+                <h1>Sign In</h1>
+                <p>
+                    You need to sign in to upload videos and use additional features.
+                    If you don't have an account, you can <a class="registerLink" href="#">register</a>.
+                </p>
+                <input type="email" name="email" placeholder="e-mail" />
+                <input type="password" name="password" placeholder="password" />
+                <button>Sign In</button>
+            </div>
+            <div class="paneContent register">
+                <h1>Register</h1>
+                <p>
+                    Creating an account will allow you to upload videos and use additional features.
+                </p>
+                <input type="email" name="email" placeholder="e-mail" />
+                <input type="text" name="name" placeholder="your name" />
+                <input type="password" name="password" placeholder="password" />
+                <input type="password" name="confirmPassword" placeholder="confirm password" />
+                <button>Register</button>
+            </div>
+        </div>
+    </div>
+</template>
