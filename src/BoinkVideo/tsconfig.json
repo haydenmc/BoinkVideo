@@ -1,6 +1,15 @@
 {
-    "files": [
-        "Client/Scripts/**/*.ts",
-        "Client/Components/**/*.ts"
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "out": "wwwroot/application.js",
+        "sourceMap": true,
+        "target": "es5"
+    },
+    "filesGlob": [
+        "Client/Components/**/*.ts",
+        "Client/Scripts/**/*.ts"
     ]
 }

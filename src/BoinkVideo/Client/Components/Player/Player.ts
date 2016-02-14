@@ -1,10 +1,11 @@
 class Player extends Component {
 	private set isPlaying(val: boolean) {
 		if (val) {
-			(<HTMLImageElement>this.querySelector(".button")).src = "Images/PauseIcon.svg";
+			(<HTMLImageElement>this.shadowRoot.querySelector(".button")).src = "Images/PauseIcon.svg";
 		} else {
-			(<HTMLImageElement>this.querySelector(".button")).src = "Images/PlayIcon.svg";
+			(<HTMLImageElement>this.shadowRoot.querySelector(".button")).src = "Images/PlayIcon.svg";
 		}
+        this._isPlaying = val;
 	}
 	private get isPlaying(): boolean {
 		return this._isPlaying;
@@ -24,7 +25,7 @@ class Player extends Component {
 		});
 	}
 	public playPause(): void {
-		if (this.isPlaying) {
+		if (!this.isPlaying) {
 			this.play();
 		} else {
 			this.pause();
