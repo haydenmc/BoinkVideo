@@ -1,4 +1,8 @@
 class Player extends Component {
+    private get videoElement(): HTMLVideoElement {
+        return this.shadowRoot.querySelector("video");
+    }
+    
 	private set isPlaying(val: boolean) {
 		if (val) {
 			(<HTMLImageElement>this.shadowRoot.querySelector(".button")).src = "Images/PauseIcon.svg";
@@ -18,8 +22,10 @@ class Player extends Component {
 	}
 	public attachedCallback(): void {
 		super.attachedCallback();
-		this.shadowRoot.querySelector("video").addEventListener("play", () => this.isPlaying = true);
-		this.shadowRoot.querySelector("video").addEventListener("pause", () => this.isPlaying = false);
+		this.videoElement.addEventListener("play", () => this.isPlaying = true);
+		this.videoElement.addEventListener("pause", () => this.isPlaying = false);
+        this.videoElement.addEventListener("durationchange", () => this.dataContext.value.duration.value = this.videoElement.duration);
+        this.videoElement.addEventListener("timeupdate", () => this.dataContext.value.currentTime.value = this.videoElement.currentTime);
 		this.shadowRoot.querySelector(".button").addEventListener("click", () => {
 			this.playPause();
 		});
@@ -32,12 +38,10 @@ class Player extends Component {
 		}
 	}
 	public play(): void {
-		var videoElement = <HTMLVideoElement>this.shadowRoot.querySelector("video");
-		videoElement.play();
+		this.videoElement.play();
 	}
 	public pause(): void {
-		var videoElement = <HTMLVideoElement>this.shadowRoot.querySelector("video");
-		videoElement.pause();
+		this.videoElement.pause();
 	}
 }
 Component.register("bv-player", Player);

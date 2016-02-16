@@ -1,9 +1,10 @@
 <template id="bv-user-pane">
     <!-- inject:css -->
     <!-- endinject -->
-    <div class="dimmer">
-        <div class="pane">
-            <div class="paneContent signin">
+    <div class="dimmer"></div>
+    <div class="pane">
+        <div class="paneContent signin">
+            <div>
                 <h1>Sign In</h1>
                 <p>
                     You need to sign in to upload videos and use additional features.
@@ -11,9 +12,13 @@
                 </p>
                 <input type="email" name="email" placeholder="e-mail" />
                 <input type="password" name="password" placeholder="password" />
-                <button>Sign In</button>
+                <button class="check">
+                    <img src="Images/Check.svg" alt="Checkmark" />
+                </button>
             </div>
-            <div class="paneContent register">
+        </div>
+        <div class="paneContent register">
+            <div>
                 <h1>Register</h1>
                 <p>
                     Creating an account will allow you to upload videos and use additional features.

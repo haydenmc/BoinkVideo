@@ -79,7 +79,7 @@ gulp.task("watch", function () {
     watch(["Client/index.html", "Client/Components/**/*.html", "Client/Components/**/*.scss"], function (events, done) {
         gulp.start("html");
     });
-    watch(["Client/Styles/*.scss"], function (events, done) {
+    watch(["Client/Styles/**/*.scss"], function (events, done) {
         gulp.start("css");
         gulp.start("html");
     });
