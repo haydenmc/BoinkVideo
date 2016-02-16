@@ -3,13 +3,22 @@
     from {
         opacity: 0;
     }
-    to {
-        
-    }
 }
 
 .animation-dimmer-fade-in {
     animation-name: dimmer-fade-in;
+    animation-duration: 250ms;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes dimmer-fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+.animation-dimmer-fade-out {
+    animation-name: dimmer-fade-out;
     animation-duration: 250ms;
     animation-timing-function: ease-in-out;
 }
@@ -22,6 +31,18 @@
 
 .animation-pane-enter {
     animation-name: pane-enter;
+    animation-duration: 250ms;
+    animation-timing-function: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+}
+
+@keyframes pane-exit {
+    to {
+        transform: translateX(360px);
+    }
+}
+
+.animation-pane-exit {
+    animation-name: pane-exit;
     animation-duration: 250ms;
     animation-timing-function: cubic-bezier(0.075, 0.820, 0.165, 1.000);
 }
@@ -50,6 +71,7 @@ h1 {
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.7);
+    cursor: pointer;
 }
 .pane {
     position: absolute;
@@ -73,14 +95,14 @@ h1 {
     padding: 24px;
 }
 p {
-    color: rgba(0, 0, 0, 0.5)
-}
-    p a {
+    color: rgba(0, 0, 0, 0.5);
+    a {
         color: rgba(0, 0, 0, 0.5);
+        &:hover {
+            color: #000;
+        }
     }
-    p a:hover {
-        color: #000;
-    }
+}
 input {
     width: 100%;
     margin: 24px 0;
@@ -95,11 +117,13 @@ input {
     font-weight: normal;
     color: #000;
     transition: color 200ms ease-out, background-color 200ms ease-out;
+    
+    &:focus {
+        border-color: rgba(0, 0, 0, 1);
+        color: #000;
+    }
 }
-input:focus {
-    border-color: rgba(0, 0, 0, 1);
-    color: #000;
-}
+
 
 button.check {
     display: block;

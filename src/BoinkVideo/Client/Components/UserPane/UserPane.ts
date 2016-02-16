@@ -14,8 +14,10 @@ class UserPane extends Component {
     }
     
     public dismiss(): void {
-        // TODO: Animate away.
-        this.parentElement.removeChild(this);
+        Animator.applyAnimation(this.shadowRoot.querySelector(".dimmer"), "animation-dimmer-fade-out", false);
+        Animator.applyAnimation(this.shadowRoot.querySelector(".pane"), "animation-pane-exit", false, () => {
+            this.parentElement.removeChild(this);
+        });
     }
 }
 Component.register("bv-user-pane", UserPane);
