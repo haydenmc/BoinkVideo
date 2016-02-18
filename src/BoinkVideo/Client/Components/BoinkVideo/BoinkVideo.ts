@@ -44,10 +44,12 @@ class BoinkVideo extends Application {
         this.appendChild(component);
         // HACK: Edge/IE doesn't seem to want to apply animations right away... we have to wait.
         if (lastElement !== null) {
+            component.style.display = "none";
             setTimeout(() => {
                 Animator.applyAnimation(lastElement, "animation-page-forward-out", true, () => {
                     lastElement.style.display = "none";
                 });
+                component.style.display = "";
                 Animator.applyAnimation(component, "animation-page-forward-in", true);
             }, 50);
         }

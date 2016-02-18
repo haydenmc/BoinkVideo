@@ -8,7 +8,7 @@
 .animation-dimmer-fade-in {
     animation-name: dimmer-fade-in;
     animation-duration: 250ms;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: ease-out;
 }
 
 @keyframes dimmer-fade-out {
@@ -20,7 +20,7 @@
 .animation-dimmer-fade-out {
     animation-name: dimmer-fade-out;
     animation-duration: 250ms;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: ease-out;
 }
 
 @keyframes pane-enter {
@@ -43,6 +43,32 @@
 
 .animation-pane-exit {
     animation-name: pane-exit;
+    animation-duration: 250ms;
+    animation-timing-function: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+}
+
+@keyframes pane-switch-out {
+    to {
+        opacity: 0;
+        transform: translateZ(-100px);
+    }
+}
+
+.animation-pane-switch-out {
+    animation-name: pane-switch-out;
+    animation-duration: 250ms;
+    animation-timing-function: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+}
+
+@keyframes pane-switch-in {
+    from {
+        opacity: 0;
+        transform: translateZ(-100px);
+    }
+}
+
+.animation-pane-switch-in {
+    animation-name: pane-switch-in;
     animation-duration: 250ms;
     animation-timing-function: cubic-bezier(0.075, 0.820, 0.165, 1.000);
 }
@@ -83,6 +109,7 @@ h1 {
     color: #000;
     padding: 24px;
     box-sizing: border-box;
+    perspective: 1000px;
 }
 .paneContent {
     position: absolute;
