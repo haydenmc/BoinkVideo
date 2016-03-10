@@ -1,17 +1,20 @@
 {
-  "name": "BoinkVideo",
+  "name": "boinkvideo",
   "version": "0.0.1",
   "devDependencies": {
-    "gulp": "^3.9.0",
+    "gulp": "3.x.x",
     "gulp-concat": "2.5.2",
     "gulp-cssmin": "0.1.7",
     "gulp-uglify": "1.2.0",
-    "gulp-sass": "^2.1.0",
-    "gulp-typescript": "^2.10.0",
-    "gulp-watch": "^4.3.5",
-    "gulp-inject": "^3.0.0",
-    "event-stream": "^3.3.2",
+    "gulp-sass": "2.x.x",
+    "gulp-typescript": "2.x.x",
+    "typescript": "1.x.x",
+    "gulp-watch": "4.x.x",
+    "gulp-inject": "3.x.x",
+    "event-stream": "3.x.x",
     "rimraf": "2.2.8",
-    "webcomponents.js": "^0.7.19"
+    "webcomponents.js": "0.x.x",
+    "typings": "0.x.x",
+    "es6-promise": "3.x.x"
   }
 }

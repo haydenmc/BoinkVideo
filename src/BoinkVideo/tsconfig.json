@@ -1,15 +1,17 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "amd",
         "noImplicitAny": false,
-        "removeComments": true,
+        "removeComments": false,
         "preserveConstEnums": true,
-        "out": "wwwroot/application.js",
+        "outFile": "wwwroot/application.js",
         "sourceMap": true,
-        "target": "es5"
+        "target": "es5",
+        "declaration": true
     },
     "filesGlob": [
         "Client/Components/**/*.ts",
-        "Client/Scripts/**/*.ts"
+        "Client/Scripts/**/*.ts",
+        "typings/browser.d.ts"
     ]
 }

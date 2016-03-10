@@ -9,6 +9,9 @@ var gulp = require("gulp"),
     uglify = require("gulp-uglify"),
     sass = require("gulp-sass"),
     typescript = require("gulp-typescript"),
+    tsProject = typescript.createProject('tsconfig.json', {
+        typescript: require('typescript')
+    }),
     watch = require("gulp-watch"),
     merge = require("gulp-merge"),
     inject = require("gulp-inject"),
@@ -24,12 +27,13 @@ function getFolders(dir) {
 }
 
 gulp.task("ts", function () {
-    return gulp.src(["Client/Scripts/**/*.ts", "Client/Components/**/*.ts"]).pipe(typescript({ sortOutput: true, target: "es5" })).pipe(concat("application.js")).pipe(gulp.dest("wwwroot/"));
+        return gulp.src(["Client/Scripts/**/*.ts", "Client/Components/**/*.ts", "typings/browser.d.ts"]).pipe(typescript({ sortOutput: true, target: "es5" })).pipe(concat("application.js")).pipe(gulp.dest("wwwroot/"));
 });
 
 gulp.task("js", function () {
     return gulp.src([
         "node_modules/webcomponents.js/webcomponents.js",
+        "node_modules/es6-promise/dist/es6-promise.js",
         "Client/Scripts/**/*.js",
         "!Client/Scripts/Components/**/*.js"
     ]).pipe(concat("libraries.js")).pipe(gulp.dest("wwwroot/"));
