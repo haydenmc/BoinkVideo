@@ -1,3 +1,8 @@
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 /**
  * A simple class to manage animations.
  */
@@ -31,7 +36,7 @@ var Animator = (function () {
         element.classList.add(name);
     };
     return Animator;
-})();
+}());
 /**
  * A simple event handler.
  * Maintains a set of callbacks to fire upon some event.
@@ -58,24 +63,7 @@ var EventHandler = (function () {
         }
     };
     return EventHandler;
-})();
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Application = (function (_super) {
-    __extends(Application, _super);
-    function Application() {
-        _super.apply(this, arguments);
-    }
-    Application.prototype.createdCallback = function () {
-        _super.prototype.createdCallback.call(this);
-        Application.instance = this;
-    };
-    return Application;
-})(Component);
-Component.register("ui-application", Application);
+}());
 /**
  * This is the base class for every Component (element).
  */
@@ -302,7 +290,21 @@ var Component = (function (_super) {
         }
     };
     return Component;
-})(HTMLElement);
+}(HTMLElement));
+/// <reference path="Component.ts" />
+var Application = (function (_super) {
+    __extends(Application, _super);
+    function Application() {
+        _super.apply(this, arguments);
+    }
+    Application.prototype.createdCallback = function () {
+        _super.prototype.createdCallback.call(this);
+        Application.instance = this;
+    };
+    return Application;
+}(Component));
+Component.register("ui-application", Application);
+/// <reference path="Component.ts" />
 /**
  * A Frame serves as a way to render and navigate between pages contained within.
  */
@@ -377,8 +379,9 @@ var Frame = (function (_super) {
         }
     };
     return Frame;
-})(Component);
+}(Component));
 Component.register("ui-frame", Frame);
+/// <reference path="Component.ts" />
 /**
  * A Page is a collection of content that is rendered inside of a Frame.
  */
@@ -439,8 +442,9 @@ var Page = (function (_super) {
         return;
     };
     return Page;
-})(Component);
+}(Component));
 Component.register("ui-page", Page);
+/// <reference path="Component.ts" />
 /**
  * The repeater control takes a template, and 'repeats' it with data from
  * the observable array of items provided via data context.
@@ -623,7 +627,7 @@ var Repeater = (function (_super) {
         }
     };
     return Repeater;
-})(Component);
+}(Component));
 Component.register("ui-repeater", Repeater);
 /**
  * AutoMapper is a utility for deep cloning and processing of incoming JSON objects
@@ -655,7 +659,7 @@ var AutoMapper = (function () {
         return newObj;
     };
     return AutoMapper;
-})();
+}());
 /**
  * This class serves as the foundation for data binding in Components,
  * and maybe eventually beyond.
@@ -803,7 +807,7 @@ var DataBinder = (function () {
      */
     DataBinder.bindingRegex = /{{[a-zA-Z._0-9]+}}/g;
     return DataBinder;
-})();
+}());
 /**
  * A class to maintain information on a data-bound property.
  * Used to construct a dependency tree of bindings.
@@ -911,7 +915,7 @@ var DataBinding = (function () {
         this.onValueChanged.unSubscribeAll();
     };
     return DataBinding;
-})();
+}());
 /**
  * Event class to communicate when data bindings have updated.
  */
@@ -919,7 +923,7 @@ var DataBindingValueChangedEvent = (function () {
     function DataBindingValueChangedEvent() {
     }
     return DataBindingValueChangedEvent;
-})();
+}());
 /**
  * A class to store information on node bindings in the DOM.
  */
@@ -952,7 +956,7 @@ var NodeBinding = (function () {
         this.node.nodeValue = newValue;
     };
     return NodeBinding;
-})();
+}());
 var httpMethod;
 (function (httpMethod) {
     httpMethod[httpMethod["GET"] = 0] = "GET";
@@ -974,8 +978,9 @@ var JsonRequest = (function () {
      * @param httpMethod HTTP method used in request
      * @param postData POST data to send, if the method used is post
      * @param authorization string Authorization header information
+     * @param contentType Content-Type header
      */
-    JsonRequest.httpRequest = function (url, method, postData, authorization) {
+    JsonRequest.httpRequest = function (url, method, postData, authorization, contentType) {
         // I promise I'll do this. Pinky swear.
         return new Promise(function (resolve, reject) {
             var req = new XMLHttpRequest();
@@ -989,6 +994,9 @@ var JsonRequest = (function () {
             }
             if (typeof authorization !== "undefined") {
                 req.setRequestHeader("Authorization", authorization);
+            }
+            if (typeof contentType !== "undefined") {
+                req.setRequestHeader("Content-Type", contentType);
             }
             req.onload = function () {
                 // This is called even on 404 etc
@@ -1025,9 +1033,10 @@ var JsonRequest = (function () {
      *
      * @param url URL to request
      * @param authorization Authorization header
+     * @param contentType Content-Type header
      */
-    JsonRequest.httpGet = function (url, authorization) {
-        return JsonRequest.httpRequest(url, httpMethod.GET, null, authorization);
+    JsonRequest.httpGet = function (url, authorization, contentType) {
+        return JsonRequest.httpRequest(url, httpMethod.GET, null, authorization, contentType);
     };
     /**
      * A method to perform a POST HTTP request and parse resulting JSON
@@ -1035,12 +1044,14 @@ var JsonRequest = (function () {
      * @param url URL to request
      * @param postData JSON post data to send
      * @param authorization Authorization header
+     * @param contentType Content-Type header
      */
-    JsonRequest.httpPost = function (url, postData, authorization) {
-        return JsonRequest.httpRequest(url, httpMethod.POST, postData, authorization);
+    JsonRequest.httpPost = function (url, postData, authorization, contentType) {
+        return JsonRequest.httpRequest(url, httpMethod.POST, postData, authorization, contentType);
     };
     return JsonRequest;
-})();
+}());
+/// <reference path="IObservable.ts" />
 /**
  * A simple value store that notifies any subscribers of changes to its value.
  */
@@ -1073,7 +1084,7 @@ var Observable = (function () {
         configurable: true
     });
     return Observable;
-})();
+}());
 var ObservableArray = (function () {
     /**
      * An array that fires events when items are added or removed.
@@ -1150,7 +1161,8 @@ var ObservableArray = (function () {
         return this.itemStore.indexOf(item);
     };
     return ObservableArray;
-})();
+}());
+/// <reference path="IObservable.ts" />
 /**
  * An ObservableProxy routes Observable properties through conversion functions to modify the value.
  */
@@ -1186,5 +1198,5 @@ var ObservableProxy = (function () {
         configurable: true
     });
     return ObservableProxy;
-})();
+}());
 //# sourceMappingURL=boink.js.map

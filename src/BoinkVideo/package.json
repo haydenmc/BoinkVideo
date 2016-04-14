@@ -11,6 +11,7 @@
     "typescript": "1.x.x",
     "gulp-watch": "4.x.x",
     "gulp-inject": "3.x.x",
+    "gulp-merge": "0.x.x",
     "event-stream": "3.x.x",
     "rimraf": "2.2.8",
     "webcomponents.js": "0.x.x",
